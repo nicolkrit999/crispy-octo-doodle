@@ -103,10 +103,9 @@ def penguin_top_right(diameter) -> Graphic:
 
 def penguin_top_portion(diameter) -> Graphic:
     return compose(pin(bottom_center,
-                       overlay(beside(penguin_top_left(diameter / 2),
-                                      penguin_top_right(diameter / 2)),
-                               circular_sector(diameter, 180, black))),
-                   pin(top_center, rotate(180, beak(diameter / 5))))
+                       (beside(penguin_top_left(diameter / 2),
+                               penguin_top_right(diameter / 2)))),
+                   circular_sector(diameter, 180, black))
 
 
 # show_graphic(penguin_top_portion(500))
@@ -116,4 +115,12 @@ def penguin_black_body_no_wings(diameter) -> Graphic:
     return compose(pin(top_center, penguin_top_portion(diameter)),
                    pin(top_center, main_black_oval(diameter * 2)))
 
-show_graphic(penguin_black_body_no_wings(500))
+# show_graphic(penguin_black_body_no_wings(500))
+
+
+def belly(diameter) -> Graphic:
+    return compose(rotate(180, pin(bottom_center, beak(diameter / 5))),
+                   pin(top_center, main_white_oval(diameter)))
+
+
+show_graphic(belly(500))
