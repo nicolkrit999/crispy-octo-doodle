@@ -21,4 +21,4 @@ def penguin_shape(size) -> Graphic:
                    pin(center_left, helper.body(size)))), helper.wing(size / 2))
 
 
-show_graphic(penguin_shape(500))
+show_graphic(penguin_shape(300))
