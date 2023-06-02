@@ -29,7 +29,11 @@ def right_eye(radius) -> Graphic:
 
 
 def beak(side_length) -> Graphic:
-    return rotate(180, triangle(side_length, side_length * 2, 75.522, orange))
+    return compose(pin(top_center, rotate(180, triangle(side_length, side_length * 2, 75.522, orange))),
+                   pin(top_center, ellipse(side_length * 4, side_length * 5.5, white)))
+
+
+# show_graphic(beak(100))
 
 
 def eyes_beak(radius) -> Graphic:
@@ -40,9 +44,25 @@ def eyes_beak(radius) -> Graphic:
 # show_graphic(eyes_beak(500))
 
 
-def top_part(radius) -> Graphic:
-    return compose(pin(center,eyes_beak(radius)),
-                   pin(bottom_center, circular_sector(radius * 1.2, 180, black)))
+def left_feet(side_length) -> Graphic:
+    return rotate(-45, triangle(side_length, side_length, 60, orange))
 
 
-show_graphic(top_part(500))
+# show_graphic(left_feet(100))
+
+
+def right_feet(side_length) -> Graphic:
+    return rotate(45, triangle(side_length, side_length, 60, orange))
+
+
+def helper_circular_sector_white(radius, angle) -> Graphic:
+    return circular_sector(radius, angle, white)
+
+
+def feet_belly(side) -> Graphic:
+    return compose(pin(bottom_right,
+                       rotate(180, helper_circular_sector_white(side, 180))),
+                   pin(top_left, right_feet(side)))
+
+
+show_graphic(feet_belly(100))
