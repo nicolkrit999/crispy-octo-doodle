@@ -33,6 +33,20 @@ def feet(side_length) -> Graphic:
 # show_graphic(feet(100))
 
 
+def left_feet(side_length) -> Graphic:
+    return rotate(-45, triangle(side_length, side_length, 60, orange))
+
+
+# show_graphic(left_feet(100))
+
+
+def right_feet(side_length) -> Graphic:
+    return rotate(45, triangle(side_length, side_length, 60, orange))
+
+
+# show_graphic(right_feet(100))
+
+
 def beak(side_length) -> Graphic:
     return rotate(180, triangle(side_length, side_length * 2, 75.522, orange))
 
@@ -98,17 +112,36 @@ def penguin_top_portion(diameter) -> Graphic:
 
 # show_graphic(penguin_top_portion(500))
 
-
+"""
 def penguin_black_body_no_wings(diameter) -> Graphic:
     return compose(pin(top_center, penguin_top_portion(diameter)),
                    pin(top_center, main_black_oval(diameter * 2)))
 
 # show_graphic(penguin_black_body_no_wings(500))
+"""
 
-
-def belly(diameter) -> Graphic:
+def belly_beak(diameter) -> Graphic:
     return compose(pin(center, beak(diameter / 5)),
                    pin(top_center, main_white_oval(diameter * 1.25)))
 
 
-show_graphic(belly(500))
+# show_graphic(belly_beak(500))
+
+
+def body_without_feet(diameter) -> Graphic:
+    return compose(pin(top_center, belly_beak(diameter)),
+                   pin(bottom_center, penguin_top_portion(diameter)))
+
+
+# show_graphic(body_without_feet(500))
+
+
+def body_no_wings(diameter) -> Graphic:
+    return overlay(body_without_feet(diameter / 1.5),
+                   ellipse(diameter * 1.7, diameter * 2, black))
+
+
+show_graphic(body_no_wings(500))
+
+
+
