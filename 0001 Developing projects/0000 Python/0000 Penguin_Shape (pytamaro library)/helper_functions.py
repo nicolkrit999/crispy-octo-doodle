@@ -149,10 +149,10 @@ def feet_belly(side) -> Graphic:
     return beside(
         compose(
             pin(bottom_left, rectangle(side / 2, 0, white)),
-            pin(top_right, left_feet(side))),
+            pin(top_right, left_feet(side * 1.5))),
         compose(
             pin(bottom_right, rectangle(side / 2, 0, white)),
-            pin(top_left, right_feet(side))))
+            pin(top_left, right_feet(side * 1.5))))
 
 
 # show_graphic(feet_belly(500))

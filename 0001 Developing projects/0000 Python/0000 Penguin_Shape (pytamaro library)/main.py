@@ -5,6 +5,9 @@ import helper_functions as helper  # defines how the helper_functions.py file is
 # The short axis of the main black body defines the penguin dimension
 # Changing this variable may result in the need to change most of the helper_functions ratios in the return statement
 def penguin_shape(short_axis) -> Graphic:
-    return empty_graphic()
+    return compose(pin(center_right,
+                       compose(pin(top_center, helper.wings(short_axis / 2)),
+                   pin(center_left, helper.body(short_axis)))),
+                   pin(top_center, helper.wings(short_axis / 2)))
 
-# show_graphic(penguin_shape(1000))
+show_graphic(penguin_shape(1000))
