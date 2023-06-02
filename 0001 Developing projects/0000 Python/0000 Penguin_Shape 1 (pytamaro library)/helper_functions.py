@@ -69,6 +69,10 @@ def feet(side_length) -> Graphic:
 # show_graphic(feet(500))
 
 
+def wing(short_axis) -> Graphic:
+    return ellipse(short_axis, short_axis * 2.5, black)
+
+
 def helper_circular_sector_white(radius, angle) -> Graphic:
     return circular_sector(radius, angle, white)
 
@@ -80,9 +84,20 @@ def beak_feet_belly_eyes(side) -> Graphic:
 # show_graphic(beak_feet_belly_eyes(100))
 
 
-def body_no_wings(size) -> Graphic:
-    return compose(pin(bottom_center, beak_feet_belly_eyes(size * 0.75)),
-                   pin(bottom_center, ellipse(size * 2, size * 2.1, green)))
+def wings(size) -> Graphic:
+    return compose(pin(top_right,
+                       compose(pin(top_center, wing(size)),
+                               pin(top_left, rectangle(size * 2, size * 2, black)))),
+                   pin(top_center, wing(size)))
 
 
-show_graphic(body_no_wings(500))
+# show_graphic(wings(100))
+
+
+def top(size) -> Graphic:
+    return overlay(beak_feet_belly_eyes(size),
+                 wings(size))
+
+
+show_graphic(top(500))
+
