@@ -36,38 +36,53 @@ def beak(side_length) -> Graphic:
 # show_graphic(beak(100))
 
 
-def eyes_beak(radius) -> Graphic:
+def eyes_beak_belly(radius) -> Graphic:
     return compose(pin(bottom_center, beside(left_eye(radius / 2), right_eye(radius / 2))),
                    pin(top_center, beak(radius / 2.5)))
 
 
-# show_graphic(eyes_beak(500))
+# show_graphic(eyes_beak_belly(500))
 
 
 # show_graphic(left_feet(100))
 
 
-def right_feet(side_length) -> Graphic:
-    return compose(pin(bottom_right, rectangle(side_length, side_length, white)),
-                   pin(top_left, rotate(45, triangle(side_length, side_length, 60, orange))))
+def right_foot(side_length) -> Graphic:
+    return compose(pin(top_left, rotate(45, triangle(side_length / 2, side_length / 2, 60, orange))),
+                   pin(bottom_right, rotate(-90, circular_sector(side_length / 2, 90, white))))
 
 
-# show_graphic(right_feet(500))
+# show_graphic(right_foot(500))
 
 
-def left_feet(side_length) -> Graphic:
-    return rotate(-90, right_feet(side_length))
+def left_foot(side_length) -> Graphic:
+    return rotate(-90, right_foot(side_length))
 
 
-# show_graphic(left_feet(500))
+# show_graphic(left_foot(500))
+
+
+def feet(side_length) -> Graphic:
+    return beside(left_foot(side_length), right_foot(side_length))
+
+
+# show_graphic(feet(500))
 
 
 def helper_circular_sector_white(radius, angle) -> Graphic:
     return circular_sector(radius, angle, white)
 
 
-def beak_feet_belly(side) -> Graphic:
-    return compose()
+def beak_feet_belly_eyes(side) -> Graphic:
+    return compose(pin(bottom_center, feet(side)), pin(bottom_center, eyes_beak_belly(side / 1.2)))
 
 
-show_graphic(beak_feet_belly(100))
+# show_graphic(beak_feet_belly_eyes(100))
+
+
+def body_no_wings(size) -> Graphic:
+    return compose(pin(bottom_center, beak_feet_belly_eyes(size * 0.75)),
+                   pin(bottom_center, ellipse(size * 2, size * 2.1, green)))
+
+
+show_graphic(body_no_wings(500))
