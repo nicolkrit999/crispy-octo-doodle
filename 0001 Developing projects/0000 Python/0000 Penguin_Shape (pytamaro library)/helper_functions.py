@@ -19,7 +19,7 @@ def main_black_oval(short_axis) -> Graphic:
 
 # function variable may be changed only if the ratio is respected
 def main_white_oval(short_axis) -> Graphic:
-    return ellipse(short_axis, short_axis * 1.2, white)
+    return ellipse(short_axis * 1.7, short_axis * 1.9, white)
 
 
 # show_graphic(main_white_oval(100))
@@ -105,8 +105,8 @@ def penguin_top_right(diameter) -> Graphic:
 
 def penguin_top_portion(diameter) -> Graphic:
     return compose(pin(bottom_center,
-                       (beside(penguin_top_left(diameter / 2),
-                               penguin_top_right(diameter / 2)))),
+                       (beside(penguin_top_left(diameter / 1.5),
+                               penguin_top_right(diameter / 1.5)))),
                    circular_sector(diameter, 180, black))
 
 
@@ -120,8 +120,9 @@ def penguin_black_body_no_wings(diameter) -> Graphic:
 # show_graphic(penguin_black_body_no_wings(500))
 """
 
+
 def belly_beak(diameter) -> Graphic:
-    return compose(pin(center, beak(diameter / 5)),
+    return compose(pin(center, beak(diameter / 3)),
                    pin(top_center, main_white_oval(diameter * 1.25)))
 
 
@@ -129,19 +130,50 @@ def belly_beak(diameter) -> Graphic:
 
 
 def body_without_feet(diameter) -> Graphic:
-    return compose(pin(top_center, belly_beak(diameter)),
-                   pin(bottom_center, penguin_top_portion(diameter)))
+    return compose(pin(bottom_center, penguin_top_portion(diameter)),
+                   pin(top_center, belly_beak(diameter / 2)))
 
 
 # show_graphic(body_without_feet(500))
 
-
-def body_no_wings(diameter) -> Graphic:
+"""
+def body_no_wings_no_feet(diameter) -> Graphic:
     return overlay(body_without_feet(diameter / 1.5),
-                   ellipse(diameter * 1.7, diameter * 2, black))
+                   ellipse(diameter * 2, diameter * 2.4, black))
 
 
-show_graphic(body_no_wings(500))
+# show_graphic(body_no_wings_no_feet(500))
+"""
+
+def feet_belly(side) -> Graphic:
+    return beside(
+        compose(
+            pin(bottom_left, rectangle(side / 2, 0, white)),
+            pin(top_right, left_feet(side))),
+        compose(
+            pin(bottom_right, rectangle(side / 2, 0, white)),
+            pin(top_left, right_feet(side))))
+
+
+# show_graphic(feet_belly(500))
+
+
+def half_body(diameter) -> Graphic:
+    return compose(pin(top_center, feet_belly(diameter / 2.5)),
+            pin(bottom_center, body_without_feet(diameter * 1.2)))
+
+show_graphic(half_body(500))
+
+
+def body(diameter) -> Graphic:
+    return compose(pin(bottom_center, half_body(diameter)),
+                   pin(bottom_center, main_black_oval(diameter * 3)))
+
+
+show_graphic(body(500))
+
+
+
 
 
 
