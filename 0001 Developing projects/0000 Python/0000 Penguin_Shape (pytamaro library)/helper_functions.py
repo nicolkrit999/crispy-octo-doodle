@@ -1,6 +1,9 @@
 from pytamaro import *
 
 
+
+orange = rgb_color(255,165,0)
+
 # ratios may be changed in respect to one function to another
 # all ellipse helper functions are based on 1.20 Length/Width ratio
 # wings helper function is based on a 2.5 Length/Width ratio.
@@ -23,10 +26,30 @@ def main_white_oval(short_axis) -> Graphic:
 
 # an equilateral triangle does not have a ratio to respect for its sides
 def feet(side_length) -> Graphic:
-    return triangle(side_length, side_length, 60, yellow)
+    return triangle(side_length, side_length, 60, orange)
 
 
 # show_graphic(feet(100))
+
+
+def left_beak_side(side_length) -> Graphic:
+    return triangle(side_length, side_length * 2, 60, orange)
+
+
+# show_graphic(left_beak_side(500))
+
+def right_beak_side(side_length) -> Graphic:
+    return rotate(90, triangle(side_length, side_length * 2, 90, orange))
+
+
+# show_graphic(right_beak_side(500))
+
+
+def beak(side_length) -> Graphic:
+    return compose(pin(bottom_right, left_beak_side(side_length * 1.155)), pin(bottom_left, rotate(-90, right_beak_side(side_length))))
+
+
+# show_graphic(beak(500))
 
 
 def wings(short_axis) -> Graphic:
@@ -63,7 +86,8 @@ def eye(diameter) -> Graphic:
 
 def penguin_top_left(diameter) -> Graphic:
     return beside(compose(pin(bottom_right, eye(diameter / 3)),
-                   pin(bottom_right, rotate(90, circular_sector(diameter, 90, black)))), rectangle(diameter / 2, diameter, black), )
+                          pin(bottom_right, rotate(90, circular_sector(diameter, 90, black)))),
+                  rectangle(diameter / 2, diameter, black), )
 
 
 # show_graphic(penguin_top_left(500))
@@ -78,26 +102,18 @@ def penguin_top_right(diameter) -> Graphic:
 
 
 def penguin_top_portion(diameter) -> Graphic:
-    return overlay(beside(penguin_top_left(diameter / 2), penguin_top_right(diameter / 2)), circular_sector(diameter, 180, black))
+    return compose(pin(bottom_center,
+                       overlay(beside(penguin_top_left(diameter / 2),
+                                      penguin_top_right(diameter / 2)),
+                               circular_sector(diameter, 180, black))),
+                   pin(top_center, rotate(180, beak(diameter / 5))))
 
 
-show_graphic(penguin_top_portion(500))
+# show_graphic(penguin_top_portion(500))
 
 
-
-
-"""
 def penguin_black_body_no_wings(diameter) -> Graphic:
     return compose(pin(top_center, penguin_top_portion(diameter)),
-            pin(top_center, main_black_oval(diameter * 2)))
+                   pin(top_center, main_black_oval(diameter * 2)))
 
-
-# show_graphic(penguin_black_body_no_wings(500))
-
-
-def penguin_black_body_with_wings(diameter) -> Graphic:
-    return compose(pin(center, wings(diameter / 2) ), pin(center_left, penguin_black_body_no_wings(diameter)) )
-
-
-# show_graphic(penguin_black_body_with_wings(500))
-"""
+show_graphic(penguin_black_body_no_wings(500))
