@@ -1,14 +1,15 @@
 from pytamaro import *
 
 
-
-orange = rgb_color(255,165,0)
+orange = rgb_color(255, 165, 0)
 
 # ratios may be changed in respect to one function to another
 # all ellipse helper functions are based on 1.20 Length/Width ratio
 # wings helper function is based on a 2.5 Length/Width ratio.
 
 # function variable may be changed only if the ratio is respected
+
+
 def main_black_oval(short_axis) -> Graphic:
     return ellipse(short_axis, short_axis * 1.2, black)
 
@@ -32,21 +33,8 @@ def feet(side_length) -> Graphic:
 # show_graphic(feet(100))
 
 
-def left_beak_side(side_length) -> Graphic:
-    return triangle(side_length, side_length * 2, 60, orange)
-
-
-# show_graphic(left_beak_side(500))
-
-def right_beak_side(side_length) -> Graphic:
-    return rotate(90, triangle(side_length, side_length * 2, 90, orange))
-
-
-# show_graphic(right_beak_side(500))
-
-
 def beak(side_length) -> Graphic:
-    return compose(pin(bottom_right, left_beak_side(side_length * 1.155)), pin(bottom_left, rotate(-90, right_beak_side(side_length))))
+    return rotate(180, triangle(side_length, side_length * 2, 75.522, orange))
 
 
 # show_graphic(beak(500))
@@ -119,8 +107,8 @@ def penguin_black_body_no_wings(diameter) -> Graphic:
 
 
 def belly(diameter) -> Graphic:
-    return compose(rotate(180, pin(bottom_center, beak(diameter / 5))),
-                   pin(top_center, main_white_oval(diameter)))
+    return compose(pin(center, beak(diameter / 5)),
+                   pin(top_center, main_white_oval(diameter * 1.25)))
 
 
 show_graphic(belly(500))
