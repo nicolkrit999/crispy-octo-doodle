@@ -21,6 +21,7 @@ from pytamaro import *  # importing single elements may reduce compiling time
 
 orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 
+
 def left_eye(radius: float) -> Graphic:
     assert radius > 0, "A Graphic with area 0 is the same as empty_graphic()"
     assert radius <= 1.7976931348623157e+308  # maximum float size accepted by python (64-bit double-precision)
@@ -137,3 +138,13 @@ def body_no_wings(size: float) -> Graphic:
 
 
 # show_graphic(body_no_wings(500))
+
+
+def penguin_complete_shape_input() -> Graphic:  # size scale as needed. A size over 1000 may take some time to
+    # compile
+    # assert area > 0, "A Graphic with area 0 is the same as empty_graphic()"
+    # assert area <= 1.7976931348623157e+308  # maximum float size accepted by python (64-bit double-precision)
+    area = float(input("Enter the desired penguin area: "))
+    return compose(pin(center_right, compose(pin(center, wing(area / 2.5)),  # wings size may be changed
+                                             pin(center_left,
+                                                 body_no_wings(area)))), wing(area / 2.5))
