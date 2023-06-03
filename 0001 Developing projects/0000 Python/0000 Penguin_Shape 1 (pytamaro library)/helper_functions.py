@@ -9,7 +9,7 @@ orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 # since every function call another one, starting grom the left_eye, pins may not be changed
 
 
-def left_eye(radius) -> Graphic:
+def left_eye(radius: float) -> Graphic:
     return compose(pin(center_right,  # pinning the eye with the rectangle is necessary
                        compose(pin(top_left,
                                    ellipse(radius / 3, radius / 3, black)),
@@ -19,10 +19,10 @@ def left_eye(radius) -> Graphic:
                        rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
 
 
-# show_graphic(left_eye(500))Z
+# show_graphic(left_eye(0))
 
 
-def right_eye(radius) -> Graphic:
+def right_eye(radius: float) -> Graphic:
     return compose(pin(center_left,  # pinning the eye with the rectangle is necessary
                        compose(pin(top_left,
                                    ellipse(radius / 3, radius / 3, black)),
@@ -35,7 +35,7 @@ def right_eye(radius) -> Graphic:
 # show_graphic(right_eye(500))
 
 
-def beak_belly(side_length) -> Graphic:  # the center of this function is the point of the beak
+def beak_belly(side_length: float) -> Graphic:  # the center of this function is the point of the beak
     return compose(pin(top_center,
                        rotate(180,  # rotating the beak now allow to not shift the center pin in other functions
                               triangle(side_length, side_length * 2, 75.522, orange))),  # the angle was computed
@@ -47,7 +47,7 @@ def beak_belly(side_length) -> Graphic:  # the center of this function is the po
 # show_graphic(beak_belly(100))
 
 
-def eyes_beak_belly(radius) -> Graphic:  # putting together these 3 elements allows to have the belly as center element
+def eyes_beak_belly(radius: float) -> Graphic:  # putting together these 3 elements allows to have the belly as center element
     return compose(pin(bottom_center,
                        beside(
                            left_eye(radius / 2), right_eye(radius / 2))),
@@ -61,7 +61,7 @@ def eyes_beak_belly(radius) -> Graphic:  # putting together these 3 elements all
 # show_graphic(left_feet(100))
 
 
-def right_foot(side_length) -> Graphic:  # the circular_sector is hidden by the belly,
+def right_foot(side_length: float) -> Graphic:  # the circular_sector is hidden by the belly,
     # however it is necessary to not have the feet touch each other in the final penguin shape
     return compose(pin(top_left,
                        rotate(45,
@@ -74,7 +74,7 @@ def right_foot(side_length) -> Graphic:  # the circular_sector is hidden by the 
 # show_graphic(right_foot(500))
 
 
-def left_foot(side_length) -> Graphic:  # using the right_foot allow the feet do be modified at the same time
+def left_foot(side_length: float) -> Graphic:  # using the right_foot allow the feet do be modified at the same time
     return rotate(-90,
                   right_foot(side_length))
 
@@ -82,7 +82,7 @@ def left_foot(side_length) -> Graphic:  # using the right_foot allow the feet do
 # show_graphic(left_foot(500))
 
 
-def feet(side_length) -> Graphic:  # necessary to not shift the bottom_center pin of the belly to the center of the foot
+def feet(side_length: float) -> Graphic:  # necessary to not shift the bottom_center pin of the belly to the center of the foot
     return beside(
         left_foot(side_length * 1.3),
         right_foot(side_length * 1.3))
@@ -91,11 +91,11 @@ def feet(side_length) -> Graphic:  # necessary to not shift the bottom_center pi
 # show_graphic(feet(500))
 
 
-def wing(short_axis) -> Graphic:  # the height may be changed without problems
+def wing(short_axis: float) -> Graphic:  # the height may be changed without problems
     return ellipse(short_axis, short_axis * 2.5, black)
 
 
-def beak_feet_belly_eyes(side) -> Graphic:  # allow to have the center of the belly to easily create the body
+def beak_feet_belly_eyes(side: float) -> Graphic:  # allow to have the center of the belly to easily create the body
     return compose(pin(bottom_center,
                        eyes_beak_belly(side / 1.2)),
                    pin(bottom_center,
@@ -104,7 +104,7 @@ def beak_feet_belly_eyes(side) -> Graphic:  # allow to have the center of the be
 # show_graphic(beak_feet_belly_eyes(100))
 
 
-def body_no_wings(size) -> Graphic:
+def body_no_wings(size: float) -> Graphic:
     return overlay(beak_feet_belly_eyes(size * 0.976),
                    pin(bottom_center,
                        ellipse(size * 2.23, size * 2.7, black)))
