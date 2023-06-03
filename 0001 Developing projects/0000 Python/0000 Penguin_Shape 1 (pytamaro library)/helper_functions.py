@@ -30,7 +30,7 @@ def beak_belly(side_length) -> Graphic:  # the center of this function is the po
                        rotate(180,  # rotating the beak now allow to not shift the center pin in other functions
                               triangle(side_length, side_length * 2, 75.522, orange))),  # the angle was computed
                    # with an online tool
-                   pin(top_center, ellipse(side_length * 4, side_length * 5.5, white)))
+                   pin(top_center, ellipse(side_length * 5.2, side_length * 6, white)))
 
 
 # show_graphic(beak_belly(100))
@@ -64,7 +64,7 @@ def left_foot(side_length) -> Graphic:  # using the right_foot allow the feet do
 
 
 def feet(side_length) -> Graphic:  # necessary to not shift the bottom_center pin of the belly to the center of the foot
-    return beside(left_foot(side_length), right_foot(side_length))
+    return beside(left_foot(side_length * 1.3), right_foot(side_length * 1.3))
 
 
 # show_graphic(feet(500))
@@ -82,15 +82,8 @@ def beak_feet_belly_eyes(side) -> Graphic:  # allow to have the center of the be
 
 
 def body_no_wings(size) -> Graphic:
-    return compose(pin(center, beak_feet_belly_eyes(size)),
-                   pin(bottom_center, ellipse(size * 2.35, size * 2.6, green)))
+    return overlay ( beak_feet_belly_eyes ( size * 0.976 ) ,
+                     pin ( bottom_center , ellipse ( size * 2.23 , size * 2.7 , black ) ) )
 
 
 # show_graphic(body_no_wings(200))
-
-
-def prova(size) -> Graphic:
-    return overlay(beak_feet_belly_eyes(size * 0.976),
-            pin(bottom_center, ellipse(size * 2.17, size * 2.45, green)))
-
-show_graphic(prova(500))
