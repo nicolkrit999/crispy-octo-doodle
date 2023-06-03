@@ -26,15 +26,15 @@ def left_eye(radius: float) -> Graphic:
 def right_eye(radius: float) -> Graphic:
     assert radius > 0, "A Graphic with area 0 is the same as empty_graphic()"
     assert radius <= 1.7976931348623157e+308  # maximum float size accepted by python (64-bit double-precision)
-    return beside(
-        compose(pin(top_left,
+    return rotate(180, beside(
+        compose(pin(bottom_right,
                     ellipse(radius / 3, radius / 3, black)),
                 pin(center,
                     ellipse(radius, radius, white))),
-        rectangle(radius / 2, radius, black))  # the rectangle allow the pupils to not touch
+        rectangle(radius / 2, radius, black)))  # the rectangle allow the pupils to not touch
 
 
-# show_graphic(right_eye(500))
+show_graphic(right_eye(500))
 
 
 def beak_belly(side_length: float) -> Graphic:
