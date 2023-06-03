@@ -1,13 +1,25 @@
 from pytamaro import *  # importing single elements may reduce compiling time
 
 
-orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
-
 # ratios may be changed in respect to one function to another
-# function variable may be changed only if the function body is changed accordingly
-# the dimensions do not respect a ratio however they scale well for any variable input value
-# since every function call another one, starting grom the left_eye, pins may not be changed
 
+# function variable may be changed only if the function body is changed accordingly
+
+# the dimensions do not respect a ratio however they scale well for any variable input value
+
+# since every function call another one, starting grom the left_eye,
+# pins may not be changed if everything else is changed accordingly
+
+# all variables define the area of the graphic. Formulas like 1 * 500 may be used as long as the result is a floating
+# number
+
+# show_graphic(()) comments may be uncommented to test the code or removed
+
+# forced variables type may be changed to int (natural numbers) or
+# removed (may lead to errors if the input is not an int or a floating point number
+
+
+orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 
 def left_eye(radius: float) -> Graphic:
     assert radius > 0, "A Graphic with area 0 is the same as empty_graphic()"
@@ -34,7 +46,7 @@ def right_eye(radius: float) -> Graphic:
         rectangle(radius / 2, radius, black)))  # the rectangle allow the pupils to not touch
 
 
-show_graphic(right_eye(500))
+# show_graphic(right_eye(500))
 
 
 def beak_belly(side_length: float) -> Graphic:
