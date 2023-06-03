@@ -1,19 +1,16 @@
 from pytamaro import *
 
 
-orange = rgb_color(255, 165, 0)
+orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 
 # ratios may be changed in respect to one function to another
-# all ellipse helper functions are based on 1.20 Length/Width ratio
-# wings helper function is based on a 2.5 Length/Width ratio.
-
-# function variable may be changed only if the ratio is respected
+# function variable may be changed only if the function body is changed accordingly
 
 
 def left_eye(radius) -> Graphic:
-    return compose(pin(center_right,
+    return compose(pin(center_right,  # pinning the eye with the rectangle is necessary
                        overlay(ellipse(radius / 2, radius / 2, black), ellipse(radius, radius, white))),
-                   pin(center_left, rectangle(radius / 2, radius, black)))
+                   pin(center_left, rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
 
 
 # show_graphic(left_eye(500))
@@ -22,7 +19,8 @@ def left_eye(radius) -> Graphic:
 def right_eye(radius) -> Graphic:
     return rotate(180, compose(pin(center_right,
                                    overlay(ellipse(radius / 2, radius / 2, black), ellipse(radius, radius, white))),
-                               pin(center_left, rectangle(radius / 2, radius, black))))
+                               pin(center_left,
+                                   rectangle(radius / 2, radius, black))))  # rectangle allow the pupils to not touch
 
 
 # show_graphic(right_eye(500))
