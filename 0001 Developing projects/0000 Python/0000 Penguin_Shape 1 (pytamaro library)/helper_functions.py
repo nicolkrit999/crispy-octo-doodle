@@ -77,15 +77,12 @@ def beak_feet_belly_eyes(side) -> Graphic:
     return compose(pin(bottom_center, eyes_beak_belly(side / 1.2)),
                    pin(bottom_center, feet(side)))
 
-
-    # show_graphic(beak_feet_belly_eyes(100))
+# show_graphic(beak_feet_belly_eyes(100))
 
 
 def body(size) -> Graphic:
-    return compose(pin (bottom_center, beak_feet_belly_eyes(size)),
+    return compose(pin(bottom_center, beak_feet_belly_eyes(size)),
                    pin(bottom_center, ellipse(size * 2.35, size * 2.6, black)))
 
 
 # show_graphic(body(200))
-
-

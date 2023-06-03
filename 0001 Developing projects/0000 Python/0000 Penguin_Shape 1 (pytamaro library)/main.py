@@ -17,8 +17,8 @@ show_graphic(penguin_shape_monco(1000))
 
 
 def penguin_shape(size) -> Graphic:
-    return compose(pin (center_right, compose(pin(center, helper.wing(size / 2)),
+    return compose(pin(center_right, compose(pin(center, helper.wing(size / 2)),
                    pin(center_left, helper.body(size)))), helper.wing(size / 2))
 
 
-show_graphic(penguin_shape(300))
+show_graphic(penguin_shape(561))
