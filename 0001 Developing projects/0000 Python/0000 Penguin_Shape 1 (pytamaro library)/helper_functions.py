@@ -12,28 +12,26 @@ orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 def left_eye(radius: float) -> Graphic:
     assert radius > 0, "A Graphic with area 0 is the same as empty_graphic()"
     assert radius <= 1.7976931348623157e+308  # maximum float size accepted by python (64-bit double-precision)
-    return compose(pin(center_right,  # pinning the eye with the rectangle is necessary
-                       compose(pin(top_left,
-                                   ellipse(radius / 3, radius / 3, black)),
-                               pin(center,
-                                   ellipse(radius, radius, white)))),
-                   pin(center_left,
-                       rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
+    return beside(
+        compose(pin(top_left,
+                    ellipse(radius / 3, radius / 3, black)),
+                pin(center,
+                    ellipse(radius, radius, white))),
+        rectangle(radius / 2, radius, black))  # the rectangle allow to distance the eyes
 
 
-# show_graphic(left_eye(500))
+# show_graphic(left_eye(265.1))
 
 
 def right_eye(radius: float) -> Graphic:
     assert radius > 0, "A Graphic with area 0 is the same as empty_graphic()"
     assert radius <= 1.7976931348623157e+308  # maximum float size accepted by python (64-bit double-precision)
-    return compose(pin(center_left,  # pinning the eye with the rectangle is necessary
-                       compose(pin(top_left,
-                                   ellipse(radius / 3, radius / 3, black)),
-                               pin(center,
-                                   ellipse(radius, radius, white)))),
-                   pin(center_left,
-                       rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
+    return beside(
+        compose(pin(top_left,
+                    ellipse(radius / 3, radius / 3, black)),
+                pin(center,
+                    ellipse(radius, radius, white))),
+        rectangle(radius / 2, radius, black))  # the rectangle allow the pupils to not touch
 
 
 # show_graphic(right_eye(500))

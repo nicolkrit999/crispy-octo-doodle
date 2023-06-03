@@ -10,4 +10,4 @@ def penguin_shape(size: float) -> Graphic | str:  # size scale as needed. A size
                                                  helper.body_no_wings(size)))), helper.wing(size / 2))
 
 
-show_graphic(penguin_shape(300))
+show_graphic(penguin_shape(200))
