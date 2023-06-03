@@ -19,7 +19,7 @@ def left_eye(radius) -> Graphic:
                        rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
 
 
-# show_graphic(left_eye(500))
+# show_graphic(left_eye(500))Z
 
 
 def right_eye(radius) -> Graphic:
