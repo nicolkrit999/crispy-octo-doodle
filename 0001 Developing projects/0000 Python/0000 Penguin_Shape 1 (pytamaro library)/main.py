@@ -1,4 +1,4 @@
-from pytamaro import * # importing single elements may reduce compiling time
+from pytamaro import *  # importing single elements may reduce compiling time
 import helper_functions as helper  # defines how the helper_functions.py file is called here
 
 
