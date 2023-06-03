@@ -10,8 +10,10 @@ orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 
 def left_eye(radius) -> Graphic:
     return compose(pin(center_right,  # pinning the eye with the rectangle is necessary
-                       overlay(
-                           ellipse(radius / 2, radius / 2, black), ellipse(radius, radius, white))),
+                       compose(pin(top_left,
+                                   ellipse(radius / 3, radius / 3, black)),
+                               pin(center,
+                                   ellipse(radius, radius, white)))),
                    pin(center_left,
                        rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
 
@@ -19,9 +21,14 @@ def left_eye(radius) -> Graphic:
 # show_graphic(left_eye(500))
 
 
-def right_eye(radius) -> Graphic:  # using the left_eye allow the eyes do be modified at the same time
-    return rotate(180,
-                  left_eye(radius))
+def right_eye(radius) -> Graphic:
+    return compose(pin(center_left,  # pinning the eye with the rectangle is necessary
+                       compose(pin(top_left,
+                                   ellipse(radius / 3, radius / 3, black)),
+                               pin(center,
+                                   ellipse(radius, radius, white)))),
+                   pin(center_left,
+                       rectangle(radius / 2, radius, black)))  # rectangle allow the pupils to not touch
 
 
 # show_graphic(right_eye(500))
