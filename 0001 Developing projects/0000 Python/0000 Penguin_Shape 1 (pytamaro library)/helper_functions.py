@@ -6,6 +6,7 @@ orange = rgb_color(255, 165, 0)  # rgb color definition for the feet and beak
 # ratios may be changed in respect to one function to another
 # function variable may be changed only if the function body is changed accordingly
 # the dimensions do not respect a ratio however they scale well for any variable input value
+# since every function call another one, starting grom the left_eye, pins may not be changed
 
 
 def left_eye(radius) -> Graphic:
