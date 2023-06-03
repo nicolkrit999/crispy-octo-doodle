@@ -25,7 +25,7 @@ def right_eye(radius) -> Graphic:  # using the left_eye allow the eyes do be mod
 # show_graphic(right_eye(500))
 
 
-def beak_belly(side_length) -> Graphic:
+def beak_belly(side_length) -> Graphic:  # the center of this function is the point of the beak
     return compose(pin(top_center,
                        rotate(180,  # rotating the beak now allow to not shift the center pin in other functions
                               triangle(side_length, side_length * 2, 75.522, orange))),  # the angle was computed
@@ -82,8 +82,15 @@ def beak_feet_belly_eyes(side) -> Graphic:  # allow to have the center of the be
 
 
 def body_no_wings(size) -> Graphic:
-    return compose(pin(bottom_center, beak_feet_belly_eyes(size)),
-                   pin(bottom_center, ellipse(size * 2.35, size * 2.6, black)))
+    return compose(pin(center, beak_feet_belly_eyes(size)),
+                   pin(bottom_center, ellipse(size * 2.35, size * 2.6, green)))
 
 
-# show_graphic(body(200))
+# show_graphic(body_no_wings(200))
+
+
+def prova(size) -> Graphic:
+    return overlay(beak_feet_belly_eyes(size * 0.976),
+            pin(bottom_center, ellipse(size * 2.17, size * 2.45, green)))
+
+show_graphic(prova(500))
